@@ -8,9 +8,66 @@ from document_extractor import ExtractionError, extract_text
 from resume_parser import parse_resume
 
 
-st.set_page_config(page_title="scanResume", page_icon="📄", layout="wide")
-st.title("scanResume")
-st.caption("Upload text-based resumes to extract structured candidate information locally.")
+st.set_page_config(page_title="Resume Scanner", page_icon="📄", layout="wide")
+st.markdown(
+    """
+    <style>
+    :root {
+        --resume-green: #2f855a;
+        --resume-light-green: #eaf7ef;
+        --resume-border: #b7dfc3;
+    }
+
+    .stApp {
+        background: linear-gradient(135deg, #f8fdf9 0%, var(--resume-light-green) 100%);
+    }
+
+    .app-header {
+        padding: 1.5rem 2rem;
+        margin: 0 0 1.5rem;
+        border: 1px solid var(--resume-border);
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.88);
+        box-shadow: 0 8px 24px rgba(47, 133, 90, 0.10);
+    }
+
+    .app-header h1 {
+        margin: 0;
+        color: var(--resume-green);
+        font-size: 2.5rem;
+        letter-spacing: -0.03em;
+    }
+
+    .app-header p {
+        margin: 0.45rem 0 0;
+        color: #42634d;
+        font-size: 1.05rem;
+    }
+
+    [data-testid="stFileUploader"] section {
+        border: 2px dashed var(--resume-border);
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.72);
+    }
+
+    .stDownloadButton button {
+        border: 0;
+        color: white;
+        background: var(--resume-green);
+    }
+
+    .stDownloadButton button:hover {
+        color: white;
+        background: #276749;
+    }
+    </style>
+    <div class="app-header">
+        <h1>Resume Scanner</h1>
+        <p>Upload resumes and get structured candidate insights in seconds.</p>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
 
 uploaded_files = st.file_uploader(
     "Upload resumes",
